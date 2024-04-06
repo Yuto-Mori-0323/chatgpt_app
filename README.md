@@ -1,5 +1,10 @@
 前提条件
-１open AIのコンソールでAPIkiーを発行する
+１open AIのコンソールでAPIキーを発行する
+https://platform.openai.com/api-keys
+
+料金についてはこちら
+https://openai.com/pricing
+
 ２APIキーをenvのOPENAI_API_KEYにセットする
 
 利用手順
