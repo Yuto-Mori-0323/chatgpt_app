@@ -1,28 +1,25 @@
-<<<<<<< HEAD
-# chatgpt_app
-=======
-# README
+前提条件
+１open AIのコンソールでAPIkiーを発行する
+２APIキーをenvのOPENAI_API_KEYにセットする
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+利用手順
+rails console
+service = OpenAiChatService.new
 
-Things you may want to cover:
+・テキスト生成
+response = service.chat_completion("gpt-3.5-turbo", [
+  {role: "user", content: "処方せんはどのくらいの時間で発行され、薬局で薬を受け取れるようになりますか？"}
+])
 
-* Ruby version
+・ファイルアップロード
+dataset_response = service.upload_dataset('lib/data/tuning002.jsonl')
 
-* System dependencies
+・ジョブ作成
+job_response = service.create_fine_tuning_job('file-gMwqsc5JLs9ApEj09uHmJwzr', 'gpt-3.5-turbo')
+※テキスト生成時のidを入力する
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
->>>>>>> 7578ae3 (初期コミット)
+・状態確認
+job_status = service.retrieve_fine_tuning_job('ftjob-NBXWIsdKFmX9O8hc19sqyCEg')
+※ジョブ作成時のidを入力する
+statusがsucceededになったら、fine_tuned_modelに記載された文字列をメモし
+テキスト生成のモデルに指定する
